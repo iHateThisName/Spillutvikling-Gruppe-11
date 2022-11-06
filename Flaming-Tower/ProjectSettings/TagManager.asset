@@ -41,3 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: LavaTop
+    uniqueID: 1518358321
+    locked: 0
+  - name: LavaBottom
+    uniqueID: 2962266365
+    locked: 0
