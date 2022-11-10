@@ -7,7 +7,7 @@ public class MainMenu : MonoBehaviour
 {
     public void PlayGame(string loadPlaySceneName)
     {
-        if (loadPlaySceneName != null || loadPlaySceneName.Equals(""))
+        if (loadPlaySceneName == "")
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
