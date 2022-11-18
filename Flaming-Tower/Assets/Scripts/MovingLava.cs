@@ -2,8 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This class is responsible for moving the lava.
+/// </summary>
 public class MovingLava : MonoBehaviour
 {
+    [Header("Component settings")]
+    [Tooltip("The speed of the movement of the lava.")]
     public float lavaSpeed = 5f;
 
     // Update is called once per frame

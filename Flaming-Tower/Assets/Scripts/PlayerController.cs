@@ -2,13 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Class which handles player movement
+/// </summary>
 public class PlayerController : MonoBehaviour
 {
-
+    [Header("Movement Settings")]
+    [Tooltip("The movement speed of the player")]
 	public float MovementSpeed = 1;
-	public float JumpForce = 10;
-
-	private Rigidbody2D rb;
+    [Tooltip("The jump force to be applied to the player jumps")]
+    public float JumpForce = 10;
+    //The rigidbody is used to move the player. This is neccesary and therefore not public.
+    private Rigidbody2D rb;
 
     // Start is called before the first frame update
     void Start()
