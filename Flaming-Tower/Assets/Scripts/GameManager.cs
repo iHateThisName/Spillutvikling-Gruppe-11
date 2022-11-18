@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -45,6 +46,16 @@ public class GameManager : MonoBehaviour
         gameOverScreen.SetActive(true);
         player.SetActive(false);
         lavaSpeed(0);
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene("Jump Tower");
     }
     
     

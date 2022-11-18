@@ -57,7 +57,6 @@ public class UnitHealth : MonoBehaviour
                 GameManager.gameManager.ShowGameOverScreen();
             }
             
-            Debug.Log($"Current health: {_currentHealth}");
         }
         
         GameManager.gameManager.ShowGameOverScreen();
