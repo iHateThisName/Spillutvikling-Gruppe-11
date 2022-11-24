@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This class handles the damages dealt to the players/units.
+/// </summary>
 public class UnitDamage : MonoBehaviour
 {
     [Header("Damage Settings")]
@@ -12,6 +15,10 @@ public class UnitDamage : MonoBehaviour
     [Tooltip("Whether or not to apply damage on non-trigger collider collisions")]
     public bool dealDamageOnCollision = true;
 
+    /// <summary>
+    /// Method to deal damage to the player.
+    /// </summary>
+    /// <param name="collisionGameObject"></param>
     private void DealDamage(GameObject collisionGameObject)
     {
         UnitHealth collidedHealth = collisionGameObject.GetComponent<UnitHealth>();
@@ -26,7 +33,10 @@ public class UnitDamage : MonoBehaviour
             collidedHealth.DamageUnit(damageAmount);
         }
     }
-
+    /// <summary>
+    /// If collision is detected, deal damage.
+    /// </summary>
+    /// <param name="collision2D"></param>
     private void OnCollisionEnter2D(Collision2D collision2D)
     {
         if (dealDamageOnCollision)

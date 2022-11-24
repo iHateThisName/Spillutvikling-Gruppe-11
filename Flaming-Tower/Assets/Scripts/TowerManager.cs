@@ -6,11 +6,13 @@ using UnityEngine;
 /// This class acts like a controller for the tower.
 /// It should extend the walls and generate new floors the higher the player comes.
 /// </summary>
-public class TowerManager : MonoBehaviour {
-	[Tooltip("The players transform")]
-	public Transform player;
+public class TowerManager : MonoBehaviour
+{
 
-	[Header("Tower Walls")]
+    [Tooltip("The players transform")]
+    public Transform player;
+
+    [Header("Tower Walls")]
     [Tooltip("The wall prefab object to be used as walls")]
     public GameObject wallPrefab;
     [Tooltip("The current height of the wall")]
@@ -24,7 +26,7 @@ public class TowerManager : MonoBehaviour {
     [Tooltip("The list of walls")]
     public List<GameObject> wallList;
 
-	[Header("Floors")]
+    [Header("Floors")]
     [Tooltip("The floor prefab object to be used as floors to be jumped on")]
     public GameObject floorPrefab;
     [Tooltip("The current height of the floor")]
@@ -38,54 +40,54 @@ public class TowerManager : MonoBehaviour {
     [Tooltip("The list of floors")]
     public List<GameObject> floorList;
 
-	/// <summary>
-	/// This method is called when the script instance is being loaded.
-	/// </summary>
-	private void Awake()
-	{
-		AmountOfWalls();
-		AmountOfFloors();	
-	}
-	/// <summary>
-	/// This method is called for every frame, as long as MonoBehaviour is being used.
-	/// </summary>
-	private void Update()
-	{
-		if (currentWallHeight - player.position.y < distanceBeforeWallSpawn)
-		{
-			SpawnTowerWalls();
-		}
+    /// <summary>
+    /// This method is called when the script instance is being loaded.
+    /// </summary>
+    private void Awake()
+    {
+        AmountOfWalls();
+        AmountOfFloors();
+    }
+    /// <summary>
+    /// This method is called for every frame, as long as MonoBehaviour is being used.
+    /// </summary>
+    private void Update()
+    {
+        if (currentWallHeight - player.position.y < distanceBeforeWallSpawn)
+        {
+            SpawnTowerWalls();
+        }
 
-		if(currentFloorHeight - player.position.y < distanceBeforeFloorSpawn)
-		{
-			SpawnFloors();
-		}
-	}
-	/// <summary>
-	/// This method is called when the walls shall be extended.
-	/// </summary>
-	private void AmountOfWalls()
-	{
-		for (int i = 0; i < amountOfWalls; ++i)
-		{
-			Vector2 pos = new Vector2(0, currentWallHeight);
-			GameObject go = Instantiate(wallPrefab, pos, Quaternion.identity, transform);
-			wallList.Add(go);
-			currentWallHeight += wallHeight;
-		}
-	}
+        if (currentFloorHeight - player.position.y < distanceBeforeFloorSpawn)
+        {
+            SpawnFloors();
+        }
+    }
+    /// <summary>
+    /// This method is called when the walls shall be extended.
+    /// </summary>
+    private void AmountOfWalls()
+    {
+        for (int i = 0; i < amountOfWalls; ++i)
+        {
+            Vector2 pos = new Vector2(0, currentWallHeight);
+            GameObject go = Instantiate(wallPrefab, pos, Quaternion.identity, transform);
+            wallList.Add(go);
+            currentWallHeight += wallHeight;
+        }
+    }
 
     /// <summary>
     /// This method is called to determine when the walls should be extended.
     /// </summary>
     private void SpawnTowerWalls()
-	{
-		wallList[0].transform.position = new Vector2(0, currentWallHeight);
-		currentWallHeight += wallHeight;
+    {
+        wallList[0].transform.position = new Vector2(0, currentWallHeight);
+        currentWallHeight += wallHeight;
 
-		GameObject temp = wallList[0];
-		wallList.RemoveAt(0);
-		wallList.Add(temp);
+        GameObject temp = wallList[0];
+        wallList.RemoveAt(0);
+        wallList.Add(temp);
     }
 
     /// <summary>
@@ -107,13 +109,13 @@ public class TowerManager : MonoBehaviour {
     /// This method is called to determine when the floors should be generated.
     /// </summary>
     private void SpawnFloors()
-	{
-		floorList[0].transform.position = new Vector2(Random.Range(-5, 5), currentFloorHeight);
-		currentFloorHeight += distanceBetweenBlocks;
+    {
+        floorList[0].transform.position = new Vector2(Random.Range(-5, 5), currentFloorHeight);
+        currentFloorHeight += distanceBetweenBlocks;
 
-		GameObject temp = floorList[0];
-		floorList.RemoveAt(0);
-		floorList.Add(temp);
-	}
+        GameObject temp = floorList[0];
+        floorList.RemoveAt(0);
+        floorList.Add(temp);
+    }
 
 }

@@ -11,11 +11,13 @@ public class MovingLava : MonoBehaviour
     [Tooltip("The speed of the movement of the lava.")]
     public float lavaSpeed = 5f;
 
-    // Update is called once per frame
+    /// <summary>
+    /// Update is called once per frame
+    /// </summary>
     void Update()
     {
 
-        // Updating the position (Making the lava rise)
+        /// Updating the position (Making the lava rise)
         transform.position += new Vector3(0, lavaSpeed / 1000, 0);
 
     }
