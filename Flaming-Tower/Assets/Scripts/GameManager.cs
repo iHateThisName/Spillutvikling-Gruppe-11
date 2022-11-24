@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI highScoreText;
     [Tooltip("The Text Mesh pro to update for the score")]
     [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI scoreTextGameOver;
 
     private int _score;
     private int _lowestValue;
@@ -101,6 +102,8 @@ public class GameManager : MonoBehaviour
     private void UpdateScoreText()
     {
         scoreText.text = $"Score: {_score}";
+        scoreTextGameOver.text = $"Score: {_score}";
+        
     }
 
     private void CheckScore()
@@ -128,7 +131,7 @@ public class GameManager : MonoBehaviour
         //When the player have moved start moving the lava
         if (_score == 1)
         {
-            LavaSpeed(1f);
+            LavaSpeed(8f);
         }
     }
 
