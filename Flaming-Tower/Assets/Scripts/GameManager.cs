@@ -143,6 +143,11 @@ public class GameManager : MonoBehaviour
         scoreTextGameOver.text = $"Score: {_score}";
     }
 
+    public int GetScore()
+    {
+        return _score;
+    }
+
     /// <summary>
     /// Checks the score of the current game.
     /// Also sets the current score.
