@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 /// <summary>
 /// This class is responsible for moving the lava.
@@ -16,13 +13,14 @@ public class MovingLava : MonoBehaviour
     public float lavaSpeedIncrease = 0.2f;
     
     [Tooltip("The value the score can be divide by. " +
+             "This will determined how often the lava speed increases. " +
              "Example if set to 5 then speed will increase when score is 5,10,15...")]
     public int scoreDivider = 10;
 
     private int _score;
     private bool _stopRising;
 
-    public MovingLava()
+    private void UpdateScore()
     {
         _score = GameManager.gameManager.GetScore();
     }
@@ -30,17 +28,32 @@ public class MovingLava : MonoBehaviour
     /// <summary>
     /// Update is called once per frame
     /// </summary>
-    void Update()
+    private void Update()
     {
+        // If the player have not jumped then dont move the lava
         if (_score == 0)
         {
             _stopRising = true;
         }
+        
+        // When the player have moved start moving the lava
+        if (_score == 1)
+        {
+            _stopRising = false;
+        }
 
-        if (_stopRising) return;
-        // Updating the position (Making the lava rise)
-        transform.position += new Vector3(0, lavaSpeed / 1000, 0);
-        SpeedUpLava();
+        if (!_stopRising)
+        {
+            // Updating the position (Making the lava rise)
+            transform.position += new Vector3(0, lavaSpeed / 1000, 0);
+            SpeedUpLava();
+            _score = GameManager.gameManager.GetScore();
+        }
+        
+        Debug.Log($"The score is: {_score}, The lava speed is: {lavaSpeed}, The lava is set to rise {!_stopRising}");
+        
+        // Retrieve the current score
+        UpdateScore();
 
     }
 
@@ -54,6 +67,10 @@ public class MovingLava : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// A way to stop the rising lava
+    /// </summary>
+    /// <param name="lavaRise"></param>
     public void LavaRise(bool lavaRise)
     {
         _stopRising = !lavaRise;
