@@ -17,9 +17,14 @@ public class MovingLava : MonoBehaviour
              "Example if set to 5 then speed will increase when score is 5,10,15...")]
     public int scoreDivider = 10;
 
+    // The current game score
     private int _score;
+    // if true the lava should stop rising
     private bool _stopRising;
-
+    
+    /// <summary>
+    /// Retrieve the current game score by calling a methode from the Game Manager.
+    /// </summary>
     private void UpdateScore()
     {
         _score = GameManager.gameManager.GetScore();
@@ -56,7 +61,13 @@ public class MovingLava : MonoBehaviour
         UpdateScore();
 
     }
-
+    
+    /// <summary>
+    /// Speeds up the lava after som calculations.
+    /// The calculation is based on if the score divide by a provide field value is a int value.
+    /// Example if the field value is set to 10 then the calculation will be true when the score is 10, 20, 30 ...
+    /// Since 10/10 = 1
+    /// </summary>
     private void SpeedUpLava()
     {
         _score = GameManager.gameManager.GetScore();

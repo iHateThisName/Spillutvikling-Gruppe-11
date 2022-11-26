@@ -71,8 +71,6 @@ public class GameManager : MonoBehaviour
     {
         CheckScore();
         CheckHighScore();
-
-
     }
 
     /// <summary>
@@ -127,7 +125,7 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Updates the visible highscore text.
+    /// Updates the visible high score text.
     /// </summary>
     private void UpdateHighScoreText()
     {
@@ -154,7 +152,7 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// Checks the score of the current game.
     /// Also sets the current score.
-    /// If the score havent been increased then the lava wont move.
+    /// If the score haven't been increased then the lava wont move.
     /// </summary>
     private void CheckScore()
     {
