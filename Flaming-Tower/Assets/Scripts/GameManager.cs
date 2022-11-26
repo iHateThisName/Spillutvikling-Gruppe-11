@@ -11,15 +11,18 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     /// <summary>
-    /// The gamemanager constructor.
+    /// The gameManager constructor.
+    /// The gameManger is following the singleton design pattern.
     /// </summary>
-    public static GameManager gameManager { get; private set; }
+    public static GameManager gameManager
+    {
+        get; 
+        private set;
+    }
 
     [Header("Game Objects")]
     [Tooltip("The player game object")]
     [SerializeField] private GameObject player;
-    [Tooltip("The Lava game object")]
-    [SerializeField] private GameObject lava;
 
     [Header("Canvas Objects")]
     [Tooltip("The game over screen")]
@@ -33,6 +36,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreText;
     [Tooltip("The Text Mesh pro to update the score text at gameover")]
     [SerializeField] private TextMeshProUGUI scoreTextGameOver;
+    
+    [Header("Scripts")] [SerializeReference]
+    private MovingLava movingLava;
+
     [Tooltip("The current score.")]
     private int _score;
     [Tooltip("Holds the starting position value")]
@@ -64,8 +71,6 @@ public class GameManager : MonoBehaviour
     {
         CheckScore();
         CheckHighScore();
-
-
     }
 
     /// <summary>
@@ -77,14 +82,7 @@ public class GameManager : MonoBehaviour
         _lowestValue = (int)Math.Round(player.transform.position.y);
     }
 
-    /// <summary>
-    /// A way to change the speed of the lava
-    /// </summary>
-    /// <param name="speed"></param>
-    void LavaSpeed(float speed)
-    {
-        lava.GetComponent<MovingLava>().lavaSpeed = speed;
-    }
+
 
     /// <summary>
     /// Shows the game over screen.
@@ -94,7 +92,7 @@ public class GameManager : MonoBehaviour
         inGameScreen.SetActive(false);
         gameOverScreen.SetActive(true);
         player.SetActive(false);
-        LavaSpeed(0);
+        movingLava.LavaRise(false);
     }
 
     /// <summary>
@@ -127,7 +125,7 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Updates the visible highscore text.
+    /// Updates the visible high score text.
     /// </summary>
     private void UpdateHighScoreText()
     {
@@ -144,9 +142,17 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
+    /// A methode to retrieve the current score.
+    /// </summary>
+    public int GetScore()
+    {
+        return _score;
+    }
+
+    /// <summary>
     /// Checks the score of the current game.
     /// Also sets the current score.
-    /// If the score havent been increased then the lava wont move.
+    /// If the score haven't been increased then the lava wont move.
     /// </summary>
     private void CheckScore()
     {
@@ -162,18 +168,6 @@ public class GameManager : MonoBehaviour
             _score = playerYValueAsInt;
             CheckHighScore();
             UpdateScoreText();
-        }
-
-        //If the player have not jumped then dont move the lava
-        if (_score == 0)
-        {
-            LavaSpeed(0f);
-        }
-
-        //When the player have moved start moving the lava
-        if (_score == 1)
-        {
-            LavaSpeed(8f);
         }
     }
 
