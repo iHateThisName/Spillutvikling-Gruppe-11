@@ -82,10 +82,11 @@ public class PlayerController : MonoBehaviour
             animator.SetFloat("Speed", Mathf.Abs(_movement));
             transform.position += new Vector3(_movement, 0, 0) * (Time.deltaTime * movementSpeed);
 
-        if (Input.GetButtonDown("Jump") && Mathf.Abs(rb.velocity.y) < 0.001f)
-        {
-            jumpSoundEffect.Play();
-            rb.AddForce(new Vector2(0, JumpForce), ForceMode2D.Impulse);
+            if (Input.GetButtonDown("Jump") && Mathf.Abs(_rb.velocity.y) < 0.001f)
+            {
+                jumpSoundEffect.Play();
+                _rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+            }
         }
     }
 }

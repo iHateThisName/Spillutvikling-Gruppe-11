@@ -98,7 +98,6 @@ public class GameManager : MonoBehaviour
         inGameScreen.SetActive(false);
         gameOverScreen.SetActive(true);
         deathSoundEffect.Play();
-        player.SetActive(false);
         movingLava.LavaRise(false);
         _playerController.AllowMovement(false);
     }
