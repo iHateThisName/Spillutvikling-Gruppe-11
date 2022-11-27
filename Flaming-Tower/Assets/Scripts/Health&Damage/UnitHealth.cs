@@ -13,10 +13,14 @@ public class UnitHealth : MonoBehaviour
     public int startingHealth = 1;
     [Tooltip("The maximum health value")]
     public int maxHealth = 1;
+    [Tooltip("The player animator to be used")]
+    public Animator animator;
     [Tooltip("The players current health.")]
     private int _currentHealth;
     [Tooltip("The maximum health the player can possibly have.")]
     private int _currentMaxHealth;
+
+    
     
     // Properties
     /// <summary>
@@ -69,11 +73,11 @@ public class UnitHealth : MonoBehaviour
 
             if (_currentHealth == 0)
             {
+                animator.SetBool("isDeadByLava", true);
                 GameManager.gameManager.ShowGameOverScreen();
             }
             
         }
-        
         GameManager.gameManager.ShowGameOverScreen();
     }
     /// <summary>
