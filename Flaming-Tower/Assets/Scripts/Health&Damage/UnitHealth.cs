@@ -17,6 +17,8 @@ public class UnitHealth : MonoBehaviour
     private int _currentHealth;
     [Tooltip("The maximum health the player can possibly have.")]
     private int _currentMaxHealth;
+
+    
     
     // Properties
     /// <summary>
@@ -73,7 +75,6 @@ public class UnitHealth : MonoBehaviour
             }
             
         }
-        
         GameManager.gameManager.ShowGameOverScreen();
     }
     /// <summary>

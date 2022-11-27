@@ -45,6 +45,9 @@ public class GameManager : MonoBehaviour
     [Tooltip("Holds the starting position value")]
     private int _lowestValue;
 
+    [Header("Audio")] [SerializeReference]
+    [SerializeField] private AudioSource deathSoundEffect;
+
     /// <summary>
     /// This method is called when the script instance is being loaded.
     /// </summary>
@@ -89,10 +92,14 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void ShowGameOverScreen()
     {
+
         inGameScreen.SetActive(false);
         gameOverScreen.SetActive(true);
+        deathSoundEffect.Play();
         player.SetActive(false);
         movingLava.LavaRise(false);
+    
+
     }
 
     /// <summary>
