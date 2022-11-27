@@ -15,6 +15,7 @@ public class MovingLava : MonoBehaviour
     [Tooltip("The value the score can be divide by. " +
              "This will determined how often the lava speed increases. " +
              "Example if set to 5 then speed will increase when score is 5,10,15...")]
+    
     public int scoreDivider = 10;
 
     // The current game score
@@ -52,14 +53,11 @@ public class MovingLava : MonoBehaviour
             // Updating the position (Making the lava rise)
             transform.position += new Vector3(0, lavaSpeed / 1000, 0);
             SpeedUpLava();
-            _score = GameManager.gameManager.GetScore();
         }
         
+        _score = GameManager.gameManager.GetScore();
         Debug.Log($"The score is: {_score}, The lava speed is: {lavaSpeed}, The lava is set to rise {!_stopRising}");
         
-        // Retrieve the current score
-        UpdateScore();
-
     }
     
     /// <summary>

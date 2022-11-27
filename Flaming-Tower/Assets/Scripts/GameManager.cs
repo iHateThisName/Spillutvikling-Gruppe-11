@@ -48,12 +48,14 @@ public class GameManager : MonoBehaviour
     [Header("Audio")] [SerializeReference]
     [SerializeField] private AudioSource deathSoundEffect;
 
+    private PlayerController _playerController;
+
     /// <summary>
     /// This method is called when the script instance is being loaded.
     /// </summary>
     void Awake()
     {
-
+        _playerController = player.GetComponent<PlayerController>();
         inGameScreen.SetActive(true);
 
         // Creating a singleton
@@ -92,14 +94,13 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void ShowGameOverScreen()
     {
-
+        movingLava.LavaRise(false);
         inGameScreen.SetActive(false);
         gameOverScreen.SetActive(true);
         deathSoundEffect.Play();
         player.SetActive(false);
         movingLava.LavaRise(false);
-    
-
+        _playerController.AllowMovement(false);
     }
 
     /// <summary>
