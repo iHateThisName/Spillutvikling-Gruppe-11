@@ -45,12 +45,14 @@ public class GameManager : MonoBehaviour
     [Tooltip("Holds the starting position value")]
     private int _lowestValue;
 
+    private PlayerController _playerController;
+
     /// <summary>
     /// This method is called when the script instance is being loaded.
     /// </summary>
     void Awake()
     {
-
+        _playerController = player.GetComponent<PlayerController>();
         inGameScreen.SetActive(true);
 
         // Creating a singleton
@@ -89,9 +91,10 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void ShowGameOverScreen()
     {
+        movingLava.LavaRise(false);
         inGameScreen.SetActive(false);
         gameOverScreen.SetActive(true);
-        movingLava.LavaRise(false);
+        _playerController.AllowMovement(false);
     }
 
     /// <summary>
