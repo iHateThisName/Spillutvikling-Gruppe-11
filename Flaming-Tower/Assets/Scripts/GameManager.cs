@@ -91,7 +91,6 @@ public class GameManager : MonoBehaviour
     {
         inGameScreen.SetActive(false);
         gameOverScreen.SetActive(true);
-        player.SetActive(false);
         movingLava.LavaRise(false);
     }
 

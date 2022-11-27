@@ -431,7 +431,7 @@ Transform:
   m_Children:
   - {fileID: 761851486}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &563603596
 GameObject:
@@ -1268,7 +1268,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 6e1690f2448815046b26bccfa72d0994, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -1340,7 +1340,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1047042011
 MonoBehaviour:
@@ -1408,6 +1408,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHealth: 1
   maxHealth: 1
+  animator: {fileID: 1047042008}
 --- !u!114 &1206767956 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7080616147742868807, guid: 280a791b2c4bace4a962ff2e7a55b6ac, type: 3}
@@ -1733,7 +1734,7 @@ Transform:
   - {fileID: 867841240}
   - {fileID: 579552380}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1287140817
 MonoBehaviour:
@@ -3840,7 +3841,7 @@ RectTransform:
   - {fileID: 1775657493}
   - {fileID: 198585602}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3930,7 +3931,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1831571846
 MonoBehaviour:
@@ -4570,7 +4571,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7080616147742868804, guid: 280a791b2c4bace4a962ff2e7a55b6ac, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7080616147742868804, guid: 280a791b2c4bace4a962ff2e7a55b6ac, type: 3}
       propertyPath: m_AnchorMax.x
