@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
     [Tooltip("The rigidbody is used to move the player. This is neccesary and therefore not public.")]
     private Rigidbody2D rb;
 
+    [SerializeField] private AudioSource jumpSoundEffect;
+
     /// <summary>
     /// Start is called before the first frame update.
     /// </summary>
@@ -67,6 +69,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && Mathf.Abs(rb.velocity.y) < 0.001f)
         {
+            jumpSoundEffect.Play();
             rb.AddForce(new Vector2(0, JumpForce), ForceMode2D.Impulse);
         }
     }
