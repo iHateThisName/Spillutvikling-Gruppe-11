@@ -76,37 +76,4 @@ public class CameraController : MonoBehaviour
             centerPosition = false;
         }
     }
-
-    private void Awake()
-    {
-        SetCenterCamera();
-    }
-
-    /// <summary>
-    /// Gets the x-axis position to use for the camera, based on the value of centerPosition.
-    /// </summary>
-    /// <returns>0 if centerPosition is set to true, else the targets x-axis position will be returned.</returns>
-    private float GetXPosition()
-    {
-        return centerPosition switch
-        {
-            true => 0,
-            false => target.position.x
-        };
-    }
-    
-    public void SetCenterCamera()
-    {
-        int centerCameraState = PlayerPrefs.GetInt("centerCamera");
-        if (centerCameraState == 1)
-        {
-            centerPosition = true;
-        }
-        else
-        {
-            centerPosition = false;
-        }
-        //  centerPosition
-
-    }
 }
