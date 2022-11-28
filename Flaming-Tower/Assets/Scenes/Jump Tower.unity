@@ -375,6 +375,7 @@ MonoBehaviour:
   scoreTextGameOver: {fileID: 1346650954}
   movingLava: {fileID: 1363046321}
   deathSoundEffect: {fileID: 361322358}
+  pauseMenuUI: {fileID: 198585601}
 --- !u!4 &361322357
 Transform:
   m_ObjectHideFlags: 0

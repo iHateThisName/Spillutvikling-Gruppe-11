@@ -6,31 +6,29 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class PlayerController : MonoBehaviour
 {
-    [Header("Movement Settings")]
-    [Tooltip("The movement speed of the player")]
+    [Header("Movement Settings")] [Tooltip("The movement speed of the player")]
     public float movementSpeed = 10f;
 
     [Tooltip("The jump force to be applied to the player jumps")]
     public float jumpForce = 20f;
 
-    [Tooltip("The current movement.")]
-    private float _movement;
+    [Tooltip("The current movement.")] private float _movement;
 
     [Tooltip("Shall the player currently face right?")]
     private bool _isFacingRight = true;
 
-    [Header("Animator")]
-    [Tooltip("The player animator to be used")]
+    [Header("Animator")] [Tooltip("The player animator to be used")]
     public Animator animator;
 
     [Tooltip("The rigidbody is used to move the player. This is necessary and therefore not public.")]
     private Rigidbody2D _rigidbody;
+
     private PlayerInput _playerInput;
     private PlayerInputActions _playerInputActions;
 
-    [SerializeField]private AudioSource jumpSoundEffect;
+    [SerializeField] private AudioSource jumpSoundEffect;
     private static readonly int Speed = Animator.StringToHash("Speed");
-    
+
     private bool _allowMovement;
 
     private void Awake()
@@ -42,7 +40,7 @@ public class PlayerController : MonoBehaviour
         _playerInputActions = new PlayerInputActions();
         EnablePlayerInputActions(true);
     }
-    
+
     private void OnEnable() => EnablePlayerInputActions(true);
     private void OnDisable() => EnablePlayerInputActions(false);
 
@@ -58,6 +56,7 @@ public class PlayerController : MonoBehaviour
                 break;
         }
     }
+
     public void AllowMovement(bool allowMovement)
     {
         _allowMovement = allowMovement;
@@ -77,7 +76,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         _movement = _playerInputActions.Player.Movement.ReadValue<Vector2>().x;
-        
+
         if (_allowMovement)
         {
             Debug.Log("Allow movement: " + _allowMovement);
@@ -89,14 +88,14 @@ public class PlayerController : MonoBehaviour
                 case > 0 when !_isFacingRight:
                     FlipPlayer();
                     break;
-            } 
+            }
+
             animator.SetFloat(Speed, Mathf.Abs(_movement));
             transform.position += new Vector3(_movement, 0, 0) * (Time.deltaTime * movementSpeed);
         }
-
     }
-    
-    
+
+
     public void Jump(InputAction.CallbackContext context)
     {
         if (_allowMovement)
@@ -108,10 +107,9 @@ public class PlayerController : MonoBehaviour
                 jumpSoundEffect.Play();
                 _rigidbody.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             }
-            }
-
+        }
     }
-    
+
     /// <summary>
     /// Flips the player horizontal.
     /// </summary>
@@ -129,6 +127,5 @@ public class PlayerController : MonoBehaviour
     {
         var velocity = _rigidbody.velocity;
         return (Mathf.Abs(velocity.y) < 0.01f);
-
     }
 }
