@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -62,6 +63,45 @@ public class MainMenu : MonoBehaviour
             SceneManager.LoadScene(loadPlaySceneName);
         }
     }
+
+    private void Awake()
+    {
+        ReadCenterCamera();
+        ReadMusicVolume();
+    }
+
+    private void ReadMusicVolume()
+    {
+        if(!PlayerPrefs.HasKey("musicVolume")) {
+            SetDefaultMusicVolume();
+        }
+        
+        float storedVolume = PlayerPrefs.GetFloat("musicVolume");
+        AudioListener.volume = storedVolume;
+        audioSlider.value = storedVolume;
+    }
+
+    public void SaveMusicVolume() {
+        AudioListener.volume = audioSlider.value;
+        PlayerPrefs.SetFloat("musicVolume", audioSlider.value);
+    }
+
+    private void SetDefaultMusicVolume()
+    {
+        PlayerPrefs.SetFloat("musicVolume", 1);
+    }
+    
+
+    private void ReadCenterCamera()
+    {
+        fullScreenToggle.isOn = PlayerPrefs.GetInt("centerCamera") == 1;
+    }
+
+    public void SetCenterCamera()
+    {
+        PlayerPrefs.SetInt("centerCamera", fullScreenToggle.isOn ? 1 : 0);
+    }
+
 
     /// <summary>
     /// This method is responsible to quit the game.
