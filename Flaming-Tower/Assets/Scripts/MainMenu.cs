@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -29,7 +27,19 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     public void QuitGame()
     {
+// Checks if the game is being run as a standalone application and not inside the editor.
+#if UNITY_STANDALONE
+        // Application.Quit() only works in the standalone version of the unity game.
+        //This do not work in the editor, but it should work in either the Windows/MacOS/WebGL version.
         Application.Quit();
+#endif
+        
+// Checks if the game is being run in the editor and not in the the standalone version.
+#if UNITY_EDITOR
+        // Since Application.Quit() does not work in the editor,
+        // due that that would stopped the whole editor,
+        // UnityEditor.EditorApplication.isPlaying needs to be set to false when quitting the game.
         UnityEditor.EditorApplication.isPlaying = false;
+#endif
     }
 }
