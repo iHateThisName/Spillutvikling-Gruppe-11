@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
 
         if (_allowMovement)
         {
-            Debug.Log("Allow movement: " + _allowMovement);
+            //Debug.Log("Allow movement: " + _allowMovement);
             switch (_movement)
             {
                 case < 0 when _isFacingRight:
@@ -100,10 +100,10 @@ public class PlayerController : MonoBehaviour
     {
         if (_allowMovement)
         {
-            Debug.Log(context);
+           // Debug.Log(context);
             if (context.performed && IsGrounded())
             {
-                Debug.Log("Jump! " + context.phase);
+               // Debug.Log("Jump! " + context.phase);
                 jumpSoundEffect.Play();
                 _rigidbody.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             }
