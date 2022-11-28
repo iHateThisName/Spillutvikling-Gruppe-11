@@ -140,11 +140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-<<<<<<< Updated upstream
-  m_IsActive: 0
-=======
   m_IsActive: 1
->>>>>>> Stashed changes
 --- !u!224 &23841161
 RectTransform:
   m_ObjectHideFlags: 0
