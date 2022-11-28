@@ -21,7 +21,7 @@ public class CameraController : MonoBehaviour
     void Update()
     {
 
-        Vector3 pos = new Vector3(target.position.x, target.position.y + offsetYAxis, -10f);
+        Vector3 pos = new Vector3(0.0f, target.position.y + offsetYAxis, -10f);
         transform.position = Vector3.Slerp(transform.position, pos, camFollowSpeed * Time.deltaTime);
         
     }
