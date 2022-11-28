@@ -23,6 +23,7 @@ public class MainMenu : MonoBehaviour
             SceneManager.LoadScene(loadPlaySceneName);
         }
     }
+
     /// <summary>
     /// This method is responsible to quit the game.
     /// </summary>
