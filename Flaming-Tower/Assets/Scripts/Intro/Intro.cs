@@ -1,14 +1,39 @@
+using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Intro : MonoBehaviour
 {
-    public string loadSceneAfterIntro;
+    public string loadScene;
     
-    void OnEnable()
+
+
+    private void OnEnable()
     {
-        // Only specifying the sceneName or sceneBuildIndex
-        // will load the Scene with the Single mode
-        SceneManager.LoadScene(loadSceneAfterIntro, LoadSceneMode.Single);
+        if (String.IsNullOrEmpty(loadScene))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+        else
+        {
+            SceneManager.LoadScene(loadScene);
+        }
+    }
+    
+    /// <summary>
+    /// This method is responsible to load a scene.
+    /// </summary>
+    /// <param name="loadScene"></param>
+    public void LoadScene(string loadScene)
+    {
+        if (String.IsNullOrEmpty(loadScene))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+        else
+        {
+            SceneManager.LoadScene(loadScene);
+        }
     }
 }

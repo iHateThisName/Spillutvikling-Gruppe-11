@@ -20,18 +20,22 @@ public class UIFadeOut : MonoBehaviour
 
     void OnEnable()
     {
-        canvasGroup.alpha = maxFade;
-        FadeOut();
+        if (fadeOut)
+        {
+            canvasGroup.alpha = maxFade;
+            FadeOut();
+        }
     }
 
     public void FadeOut()
     {
         if (fadeOut)
         {
-            if (canvasGroup.alpha >= 0)
+            canvasGroup.alpha = maxFade;
+            if (canvasGroup.alpha >= minFade)
             {
                 canvasGroup.alpha -= timeToFade * Time.deltaTime;
-                if (canvasGroup.alpha == 0)
+                if (canvasGroup.alpha == minFade)
                 {
                     fadeOut = false;
                 }
