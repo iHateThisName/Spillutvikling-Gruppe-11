@@ -156,6 +156,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void MainMenu()
     {
+        GameIsPaused = false;
         SceneManager.LoadScene("MainMenu");
     }
 

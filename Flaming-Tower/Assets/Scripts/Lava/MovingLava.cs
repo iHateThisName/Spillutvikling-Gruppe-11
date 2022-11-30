@@ -70,7 +70,7 @@ public class MovingLava : MonoBehaviour
         }
 
         _score = GameManager.gameManager.GetScore();
-        // Debug.Log($"The score is: {_score}, The lava speed is: {lavaSpeed}, The lava is set to rise {!_stopRising}");
+        //Debug.Log($"The score is: {_score}, The lava speed is: {lavaSpeed}, The lava is set to rise {!_stopRising}");
     }
 
     /// <summary>
