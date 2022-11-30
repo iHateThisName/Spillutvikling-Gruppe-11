@@ -31,10 +31,11 @@ public class UIFadeIn : MonoBehaviour
     {
         if (fadeIn)
         {
+            canvasGroup.alpha = minFade;
             if (canvasGroup.alpha < 1)
             {
                 canvasGroup.alpha += timeToFade * Time.deltaTime;
-                if (canvasGroup.alpha >= 1)
+                if (canvasGroup.alpha >= maxFade)
                 {
                     fadeIn = false;
                 }
