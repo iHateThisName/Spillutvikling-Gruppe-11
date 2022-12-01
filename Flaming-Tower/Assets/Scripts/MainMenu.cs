@@ -87,7 +87,7 @@ public class MainMenu : MonoBehaviour
 
         if (PlayerPrefs.GetInt("showIntro") == 1)
         {
-            PlayerPrefs.SetInt("showIntro", 1);
+            PlayerPrefs.SetInt("showIntro", 0);
             SceneManager.LoadScene(loadPlaySceneName);
         }
     }
