@@ -1,28 +1,41 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 /// <summary>
 /// This class is responsible for moving the lava.
 /// </summary>
 public class MovingLava : MonoBehaviour
 {
-    [Header("Component settings")]
-    [Tooltip("The speed of the movement of the lava.")]
-    public float lavaSpeed = 5f;
-    
+    /// <summary>
+    /// The movingLava constructor.l
+    /// The movingLava is following the singleton design pattern.
+    /// </summary>
+    public static MovingLava movingLava { get; private set; }
+
+    [Header("Component settings")] [Tooltip("The speed of the movement of the lava.")]
+    public float lavaSpeed = 10f;
+
     [Tooltip("The amount the lava speed will increase by")]
     public float lavaSpeedIncrease = 0.2f;
-    
-    [Tooltip("The value the score can be divide by. " +
-             "This will determined how often the lava speed increases. " +
-             "Example if set to 5 then speed will increase when score is 5,10,15...")]
-    
-    public int scoreDivider = 10;
+
+    // [Tooltip("The value the score can be divide by. " +
+    //          "This will determined how often the lava speed increases. " +
+    //          "Example if set to 5 then speed will increase when score is 5,10,15...")]
+    // public int scoreDivider = 10;
+
+    [Tooltip("A bool that to show the debugger for the moving lava")]
+    public bool shownDebug = false;
 
     // The current game score
     private int _score;
+
     // if true the lava should stop rising
     private bool _stopRising;
-    
+
+    public int increaseLavaPerSeconds = 5;
+
     /// <summary>
     /// Retrieve the current game score by calling a methode from the Game Manager.
     /// </summary>
@@ -31,17 +44,36 @@ public class MovingLava : MonoBehaviour
         _score = GameManager.gameManager.GetScore();
     }
 
+    private void Awake()
+    {
+        if (movingLava != null && movingLava != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            movingLava = this;
+        }
+    }
+
+    private void Start()
+    {
+        InvokeRepeating("SpeedUpLava", 0, increaseLavaPerSeconds);
+    }
+
     /// <summary>
     /// Update is called once per frame
     /// </summary>
     private void Update()
     {
+        UpdateScore();
+
         // If the player have not jumped then dont move the lava
         if (_score == 0)
         {
             _stopRising = true;
         }
-        
+
         // When the player have moved start moving the lava
         if (_score == 1)
         {
@@ -50,16 +82,10 @@ public class MovingLava : MonoBehaviour
 
         if (!_stopRising)
         {
-            // Updating the position (Making the lava rise)
-            transform.position += new Vector3(0, lavaSpeed / 1000, 0);
-            SpeedUpLava();
+            MoveLava();
         }
-        
-        _score = GameManager.gameManager.GetScore();
-        Debug.Log($"The score is: {_score}, The lava speed is: {lavaSpeed}, The lava is set to rise {!_stopRising}");
-        
     }
-    
+
     /// <summary>
     /// Speeds up the lava after som calculations.
     /// The calculation is based on if the score divide by a provide field value is a int value.
@@ -68,12 +94,34 @@ public class MovingLava : MonoBehaviour
     /// </summary>
     private void SpeedUpLava()
     {
-        _score = GameManager.gameManager.GetScore();
-        if (_score % scoreDivider == 0)
+
+        if (!_stopRising)
         {
-            lavaSpeed += lavaSpeedIncrease;
+            if (lavaSpeed <= 6)
+            {
+                lavaSpeed += lavaSpeedIncrease;
+
+                if (lavaSpeed > 6)
+                {
+                    lavaSpeed = 6f;
+                }
+
+                if (shownDebug)
+                {
+                    Debug.Log(
+                        $"The score is: {_score}, The lava speed is: {lavaSpeed}, The lava is set to rise {!_stopRising}");
+                }
+            }
+
         }
-        
+
+
+
+    }
+
+    private void MoveLava()
+    {
+        transform.position += new Vector3(0, (lavaSpeed * Time.deltaTime), 0);
     }
 
     /// <summary>
