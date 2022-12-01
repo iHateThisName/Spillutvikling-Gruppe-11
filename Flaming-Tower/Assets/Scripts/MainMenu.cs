@@ -9,27 +9,42 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] private Toggle fullScreenToggle;
+    [SerializeField] private Toggle enableIntroToggle;
     [SerializeField] private Slider audioSlider;
     [SerializeField] private string sceneToLoadAfterIntro = "Jump Tower";
-    
+
     private void Awake()
     {
         ReadCenterCamera();
         ReadMusicVolume();
+        ReadIntroToggle();
+        Debug.Log("enabled intro: " + PlayerPrefs.GetInt("showIntro"));
     }
-    
+
     private void ReadMusicVolume()
     {
-        if(!PlayerPrefs.HasKey("musicVolume")) {
+        if (!PlayerPrefs.HasKey("musicVolume"))
+        {
             SetDefaultMusicVolume();
         }
-        
+
         float storedVolume = PlayerPrefs.GetFloat("musicVolume");
         AudioListener.volume = storedVolume;
         audioSlider.value = storedVolume;
     }
 
-    public void SaveMusicVolume() {
+    private void ReadIntroToggle()
+    {
+        if (!PlayerPrefs.HasKey("showIntro"))
+        {
+            SetIntroEnabled();
+        }
+
+        if (enableIntroToggle != null) enableIntroToggle.isOn = PlayerPrefs.GetInt("showIntro") == 1;
+    }
+
+    public void SaveMusicVolume()
+    {
         AudioListener.volume = audioSlider.value;
         PlayerPrefs.SetFloat("musicVolume", audioSlider.value);
     }
@@ -38,7 +53,7 @@ public class MainMenu : MonoBehaviour
     {
         PlayerPrefs.SetFloat("musicVolume", 1);
     }
-    
+
     private void ReadCenterCamera()
     {
         fullScreenToggle.isOn = PlayerPrefs.GetInt("centerCamera") == 1;
@@ -47,6 +62,11 @@ public class MainMenu : MonoBehaviour
     public void SetCenterCamera()
     {
         PlayerPrefs.SetInt("centerCamera", fullScreenToggle.isOn ? 1 : 0);
+    }
+
+    public void SetIntroEnabled()
+    {
+        PlayerPrefs.SetInt("showIntro", enableIntroToggle.isOn ? 1 : 0);
     }
 
     /// <summary>
@@ -59,18 +79,16 @@ public class MainMenu : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
-        else
-        {
-            if (PlayerPrefs.GetInt("showIntro") == 1)
-            {
-                SceneManager.LoadScene(sceneToLoadAfterIntro);
-            }
 
-            if (PlayerPrefs.GetInt("showIntro") == 0) {
-                
-                PlayerPrefs.SetInt("showIntro", 1);
-                SceneManager.LoadScene(loadPlaySceneName);
-            }
+        if (PlayerPrefs.GetInt("showIntro") == 0)
+        {
+            SceneManager.LoadScene(sceneToLoadAfterIntro);
+        }
+
+        if (PlayerPrefs.GetInt("showIntro") == 1)
+        {
+            PlayerPrefs.SetInt("showIntro", 1);
+            SceneManager.LoadScene(loadPlaySceneName);
         }
     }
 
@@ -86,7 +104,7 @@ public class MainMenu : MonoBehaviour
         //This do not work in the editor, but it should work in either the Windows/MacOS/WebGL version.
         Application.Quit();
 #endif
-        
+
 // Checks if the game is being run in the editor and not in the the standalone version.
 #if UNITY_EDITOR
         // Since Application.Quit() does not work in the editor,
@@ -96,6 +114,3 @@ public class MainMenu : MonoBehaviour
 #endif
     }
 }
-
-
-
