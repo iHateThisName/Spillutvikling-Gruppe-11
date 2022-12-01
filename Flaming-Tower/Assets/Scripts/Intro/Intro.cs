@@ -2,13 +2,19 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+/// <summary>
+/// This class is responsible for loading the game scene.
+/// </summary>
 public class Intro : MonoBehaviour
 {
+    [Header("Scene settings")]
+    [Tooltip("The scene to be loaded")]
     public string loadScene;
     
 
-
+    /// <summary>
+    /// Runs when the script is enabled.
+    /// </summary>
     private void OnEnable()
     {
         if (String.IsNullOrEmpty(loadScene))
