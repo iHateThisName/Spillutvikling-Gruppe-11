@@ -305,7 +305,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &198585602
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1773,11 +1773,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9002450308139032960, guid: c7085ffef0c42ab48868fa8aef1e95de, type: 3}
       propertyPath: lavaSpeed
-      value: 11
+      value: 11.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 9002450308139032960, guid: c7085ffef0c42ab48868fa8aef1e95de, type: 3}
+      propertyPath: shownDebug
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9002450308139032960, guid: c7085ffef0c42ab48868fa8aef1e95de, type: 3}
       propertyPath: scoreDivider
-      value: 100
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 9002450308139032962, guid: c7085ffef0c42ab48868fa8aef1e95de, type: 3}
       propertyPath: m_Name
