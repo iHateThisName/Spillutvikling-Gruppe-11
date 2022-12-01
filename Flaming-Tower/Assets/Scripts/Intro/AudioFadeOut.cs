@@ -15,6 +15,11 @@ public class AudioFadeOut : MonoBehaviour
         maxVolume = volume;
     }
 
+    public void setMaxVolume()
+    {
+        maxVolume = PlayerPrefs.GetFloat("musicVolume");
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -27,6 +32,7 @@ public class AudioFadeOut : MonoBehaviour
     void OnEnable()
     {
         audioSource.volume = maxVolume;
+        setMaxVolume();
         FadeOut();
     }
 
