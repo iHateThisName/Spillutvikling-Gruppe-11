@@ -1034,7 +1034,7 @@ MonoBehaviour:
   fadeOut: 1
   maxVolume: 0.3
   minVolume: 0
-  timeToFade: 0
+  timeToFade: 0.15
 --- !u!1 &545631311
 GameObject:
   m_ObjectHideFlags: 0
