@@ -15,10 +15,10 @@ public class MovingLava : MonoBehaviour
     public static MovingLava movingLava { get; private set; }
 
     [Header("Component settings")] [Tooltip("The speed of the movement of the lava.")]
-    public float lavaSpeed = 10f;
+    public float lavaSpeed = 5.8f;
 
     [Tooltip("The amount the lava speed will increase by")]
-    public float lavaSpeedIncrease = 0.2f;
+    public float lavaSpeedIncrease = 0.05f;
 
     // [Tooltip("The value the score can be divide by. " +
     //          "This will determined how often the lava speed increases. " +
@@ -33,8 +33,9 @@ public class MovingLava : MonoBehaviour
 
     // if true the lava should stop rising
     private bool _stopRising;
-
-    public int increaseLavaPerSeconds = 5;
+    
+    [Tooltip("How often should lava increase in seconds")]
+    public int increaseLavaPerSeconds = 20;
 
     /// <summary>
     /// Retrieve the current game score by calling a methode from the Game Manager.
@@ -97,13 +98,13 @@ public class MovingLava : MonoBehaviour
 
         if (!_stopRising)
         {
-            if (lavaSpeed <= 6)
+            if (lavaSpeed <= 6.4)
             {
                 lavaSpeed += lavaSpeedIncrease;
 
-                if (lavaSpeed > 6)
+                if (lavaSpeed > 6.4)
                 {
-                    lavaSpeed = 6f;
+                    lavaSpeed = 6.4f;
                 }
 
                 if (shownDebug)
