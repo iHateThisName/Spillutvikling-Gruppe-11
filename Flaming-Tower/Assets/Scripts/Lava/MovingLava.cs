@@ -21,7 +21,8 @@ public class MovingLava : MonoBehaviour
              "This will determined how often the lava speed increases. " +
              "Example if set to 5 then speed will increase when score is 5,10,15...")]
     public int scoreDivider = 10;
-
+    [Tooltip("A bool that to show the debugger for the moving lava")]
+    public bool shownDebug = false;
     // The current game score
     private int _score;
 
@@ -65,12 +66,16 @@ public class MovingLava : MonoBehaviour
         if (!_stopRising)
         {
             // Updating the position (Making the lava rise)
-            transform.position = new Vector3(0, lavaSpeed/1000, 0);
+            float yIncrease = ((float)lavaSpeed * 0.001f);
+            transform.position += new Vector3(0, yIncrease, 0);
             SpeedUpLava();
         }
 
         _score = GameManager.gameManager.GetScore();
-        //Debug.Log($"The score is: {_score}, The lava speed is: {lavaSpeed}, The lava is set to rise {!_stopRising}");
+        if (shownDebug)
+        { 
+            Debug.Log($"The score is: {_score}, The lava speed is: {lavaSpeed}, The lava is set to rise {!_stopRising}");
+        }
     }
 
     /// <summary>
