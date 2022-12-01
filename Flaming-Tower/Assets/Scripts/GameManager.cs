@@ -81,6 +81,7 @@ public class GameManager : MonoBehaviour
     public void GoToMainMenu()
     {
         GameIsPaused = false;
+        Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
     }
 
