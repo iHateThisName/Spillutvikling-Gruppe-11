@@ -1,4 +1,7 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 /// <summary>
 /// This class is responsible for moving the lava.
@@ -12,15 +15,15 @@ public class MovingLava : MonoBehaviour
     public static MovingLava movingLava { get; private set; }
 
     [Header("Component settings")] [Tooltip("The speed of the movement of the lava.")]
-    public float lavaSpeed = (float)10f;
+    public float lavaSpeed = 10f;
 
     [Tooltip("The amount the lava speed will increase by")]
-    public float lavaSpeedIncrease = (float)0.2f;
+    public float lavaSpeedIncrease = 0.2f;
 
-    [Tooltip("The value the score can be divide by. " +
-             "This will determined how often the lava speed increases. " +
-             "Example if set to 5 then speed will increase when score is 5,10,15...")]
-    public int scoreDivider = 10;
+    // [Tooltip("The value the score can be divide by. " +
+    //          "This will determined how often the lava speed increases. " +
+    //          "Example if set to 5 then speed will increase when score is 5,10,15...")]
+    // public int scoreDivider = 10;
 
     [Tooltip("A bool that to show the debugger for the moving lava")]
     public bool shownDebug = false;
@@ -30,6 +33,8 @@ public class MovingLava : MonoBehaviour
 
     // if true the lava should stop rising
     private bool _stopRising;
+
+    public int increaseLavaPerSeconds = 5;
 
     /// <summary>
     /// Retrieve the current game score by calling a methode from the Game Manager.
@@ -49,6 +54,11 @@ public class MovingLava : MonoBehaviour
         {
             movingLava = this;
         }
+    }
+
+    private void Start()
+    {
+        InvokeRepeating("SpeedUpLava", 0, increaseLavaPerSeconds);
     }
 
     /// <summary>
@@ -72,15 +82,7 @@ public class MovingLava : MonoBehaviour
 
         if (!_stopRising)
         {
-            // Updating the position (Making the lava rise)
-            float yIncrease = ((float)lavaSpeed * 0.001f);
-            transform.position += new Vector3(0, yIncrease, 0);
-            SpeedUpLava();
-        }
-
-        if (shownDebug)
-        { 
-            Debug.Log($"The score is: {_score}, The lava speed is: {lavaSpeed}, The lava is set to rise {!_stopRising}");
+            MoveLava();
         }
     }
 
@@ -92,10 +94,34 @@ public class MovingLava : MonoBehaviour
     /// </summary>
     private void SpeedUpLava()
     {
-        if (_score % scoreDivider == 0)
+
+        if (!_stopRising)
         {
-            lavaSpeed += lavaSpeedIncrease;
+            if (lavaSpeed <= 6)
+            {
+                lavaSpeed += lavaSpeedIncrease;
+
+                if (lavaSpeed > 6)
+                {
+                    lavaSpeed = 6f;
+                }
+
+                if (shownDebug)
+                {
+                    Debug.Log(
+                        $"The score is: {_score}, The lava speed is: {lavaSpeed}, The lava is set to rise {!_stopRising}");
+                }
+            }
+
         }
+
+
+
+    }
+
+    private void MoveLava()
+    {
+        transform.position += new Vector3(0, (lavaSpeed * Time.deltaTime), 0);
     }
 
     /// <summary>
