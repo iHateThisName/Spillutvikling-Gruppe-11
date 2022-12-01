@@ -31,7 +31,6 @@ public class UIFadeOut : MonoBehaviour
     {
         if (fadeOut)
         {
-            canvasGroup.alpha = maxFade;
             if (canvasGroup.alpha >= minFade)
             {
                 canvasGroup.alpha -= timeToFade * Time.deltaTime;

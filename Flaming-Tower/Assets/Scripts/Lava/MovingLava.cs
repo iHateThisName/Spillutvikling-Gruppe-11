@@ -65,12 +65,12 @@ public class MovingLava : MonoBehaviour
         if (!_stopRising)
         {
             // Updating the position (Making the lava rise)
-            transform.position += new Vector3(0, lavaSpeed / 1000, 0);
+            transform.position = new Vector3(0, lavaSpeed/1000, 0);
             SpeedUpLava();
         }
 
         _score = GameManager.gameManager.GetScore();
-        // Debug.Log($"The score is: {_score}, The lava speed is: {lavaSpeed}, The lava is set to rise {!_stopRising}");
+       // Debug.Log($"The score is: {_score}, The lava speed is: {lavaSpeed}, The lava is set to rise {!_stopRising}");
     }
 
     /// <summary>
