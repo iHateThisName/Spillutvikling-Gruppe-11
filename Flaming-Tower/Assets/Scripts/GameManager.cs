@@ -166,7 +166,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void Restart()
     {
-        SceneManager.LoadScene("Jump Tower");
+        SceneManager.LoadScene("FlamingTower");
     }
 
     /// <summary>

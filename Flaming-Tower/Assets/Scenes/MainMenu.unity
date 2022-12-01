@@ -4578,7 +4578,7 @@ MonoBehaviour:
   fullScreenToggle: {fileID: 550437563}
   enableIntroToggle: {fileID: 371139952}
   audioSlider: {fileID: 973269578}
-  sceneToLoadAfterIntro: Jump Tower
+  sceneToLoadAfterIntro: FlamingTower
 --- !u!1 &2080947683
 GameObject:
   m_ObjectHideFlags: 0
