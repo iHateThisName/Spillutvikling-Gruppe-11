@@ -45,6 +45,9 @@ public class CameraController : MonoBehaviour
         transform.position = Vector3.Slerp(transform.position, pos, camFollowSpeed * Time.deltaTime);
     }
 
+    /// <summary>
+    /// Awake is called when an enabled script instance is being loaded.
+    /// </summary>
     private void Awake()
     {
         SetCenterCamera();
@@ -63,6 +66,11 @@ public class CameraController : MonoBehaviour
         };
     }
 
+    /// <summary>
+    /// Sets the state of the center camera.
+    /// If the centerCameraState equals 1, the camera will be centralized.
+    /// If the centerCameraState equals 0, the camera will move after the player
+    /// </summary>
     public void SetCenterCamera()
     {
         int centerCameraState = PlayerPrefs.GetInt("centerCamera");

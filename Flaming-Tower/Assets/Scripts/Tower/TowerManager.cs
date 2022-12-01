@@ -28,7 +28,10 @@ public class TowerManager : MonoBehaviour
 
     [Header("Floors")]
     [Tooltip("The floor prefab object to be used as floors to be jumped on")]
-    public GameObject floorPrefab;
+    public FloorController floorPrefab;
+
+
+    public List<FloorController> prefabList; 
     [Tooltip("The current height of the floor")]
     public float currentFloorHeight;
     [Tooltip("The distance per floor generated.")]
@@ -38,7 +41,18 @@ public class TowerManager : MonoBehaviour
     [Tooltip("The amount of floors to generate")]
     public int amountOfFloors = 20;
     [Tooltip("The list of floors")]
-    public List<GameObject> floorList;
+    public List<FloorController> floorList;
+
+    //The holder of created floors.
+    public GameObject floorHolder;
+
+    public List<List<FloorController>> floorLists = new List<List<FloorController>>();
+
+    public int changeFloorsValue;
+
+    private int totalFloors = 0;
+
+    private int floorPositon;
 
     /// <summary>
     /// This method is called when the script instance is being loaded.
@@ -47,6 +61,7 @@ public class TowerManager : MonoBehaviour
     {
         AmountOfWalls();
         AmountOfFloors();
+        floorPrefab = prefabList[0];
     }
     /// <summary>
     /// This method is called for every frame, as long as MonoBehaviour is being used.
@@ -96,13 +111,32 @@ public class TowerManager : MonoBehaviour
     /// </summary>
     private void AmountOfFloors()
     {
-        for (int i = 0; i < amountOfFloors; i++)
-        {
-            Vector2 pos = new Vector2(Random.Range(-5, 5), currentFloorHeight);
-            GameObject go = Instantiate(floorPrefab, pos, Quaternion.identity, transform);
-            floorList.Add(go);
-            currentFloorHeight += distanceBetweenBlocks;
+        currentFloorHeight = 0;
+        for(int x = 0; x < prefabList.Count; x++){
+            FloorController currentPrefab = prefabList[x];
+            List<FloorController> newFloors = new List<FloorController>();
+            floorLists.Add(newFloors);
+            for (int i = 0; i < amountOfFloors; i++)
+            {
+                Vector2 pos = new Vector2(Random.Range(-6, 7), -15); 
+                if(x == 0){
+                    currentFloorHeight += distanceBetweenBlocks;
+                    pos = new Vector2(Random.Range(-6, 7), currentFloorHeight);
+                    totalFloors++;
+                }
+                FloorController go = Instantiate(currentPrefab, pos, Quaternion.identity, floorHolder.transform);
+                go.setFloorText(totalFloors.ToString());
+                newFloors.Add(go);
+            }
+            if(x == 0){
+                floorList = newFloors;
+            }
         }
+        
+    }
+
+    private void FloorPicker() {
+        
     }
 
     /// <summary>
@@ -110,12 +144,19 @@ public class TowerManager : MonoBehaviour
     /// </summary>
     private void SpawnFloors()
     {
-        floorList[0].transform.position = new Vector2(Random.Range(-5, 5), currentFloorHeight);
+        totalFloors++;
         currentFloorHeight += distanceBetweenBlocks;
+        FloorController currentFloor = floorList[0];
+        currentFloor.setFloorText(totalFloors.ToString());
+        currentFloor.transform.position = new Vector2(Random.Range(-6, 7), currentFloorHeight);
 
-        GameObject temp = floorList[0];
+        FloorController temp = floorList[0];
         floorList.RemoveAt(0);
         floorList.Add(temp);
+        if(totalFloors % changeFloorsValue == 0){
+            floorPositon = (floorPositon + 1) % floorLists.Count;
+            floorList = floorLists[floorPositon];
+        }
     }
 
 }
