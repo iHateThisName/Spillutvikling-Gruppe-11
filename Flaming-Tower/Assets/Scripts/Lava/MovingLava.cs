@@ -65,7 +65,7 @@ public class MovingLava : MonoBehaviour
         if (!_stopRising)
         {
             // Updating the position (Making the lava rise)
-            transform.position += new Vector3(0, lavaSpeed / 1000, 0);
+            transform.position = new Vector3(0, lavaSpeed/1000, 0);
             SpeedUpLava();
         }
 

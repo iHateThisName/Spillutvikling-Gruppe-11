@@ -8,8 +8,9 @@ using UnityEngine.UI;
 /// </summary>
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] public Toggle fullScreenToggle;
-    [SerializeField] public Slider audioSlider;
+    [SerializeField] private Toggle fullScreenToggle;
+    [SerializeField] private Slider audioSlider;
+    [SerializeField] private string sceneToLoadAfterIntro = "Jump Tower";
     
     private void Awake()
     {
@@ -60,9 +61,19 @@ public class MainMenu : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene(loadPlaySceneName);
+            if (PlayerPrefs.GetInt("showIntro") == 1)
+            {
+                SceneManager.LoadScene(sceneToLoadAfterIntro);
+            }
+
+            if (PlayerPrefs.GetInt("showIntro") == 0) {
+                
+                PlayerPrefs.SetInt("showIntro", 1);
+                SceneManager.LoadScene(loadPlaySceneName);
+            }
         }
     }
+
 
     /// <summary>
     /// This method is responsible to quit the game.

@@ -656,12 +656,6 @@ PlayableDirector:
     value: {fileID: 1184863909}
   - key: {fileID: -6608336588137222551, guid: 177cf6508fb2d984da407af1c221506d, type: 2}
     value: {fileID: 427897684}
-  - key: {fileID: -1369032878512108592, guid: 177cf6508fb2d984da407af1c221506d, type: 2}
-    value: {fileID: 1428022377}
-  - key: {fileID: 3632356254468039124, guid: 177cf6508fb2d984da407af1c221506d, type: 2}
-    value: {fileID: 663530319}
-  - key: {fileID: -6290688860378834690, guid: 177cf6508fb2d984da407af1c221506d, type: 2}
-    value: {fileID: 296136760}
   - key: {fileID: -3603018734399146144, guid: 177cf6508fb2d984da407af1c221506d, type: 2}
     value: {fileID: 253191046}
   m_ExposedReferences:
@@ -1360,7 +1354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5494c04e72402e14080643d5941128e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadSceneAfterIntro: Jump Tower
+  loadScene: Jump Tower
 --- !u!1 &705494451
 GameObject:
   m_ObjectHideFlags: 0
