@@ -1784,7 +1784,7 @@ MonoBehaviour:
   wallPrefab: {fileID: 867841239}
   currentWallHeight: 10
   wallHeight: 11.5
-  distanceBeforeWallSpawn: 10
+  distanceBeforeWallSpawn: 20
   amountOfWalls: 10
   wallList: []
   floorPrefab: {fileID: 8297983107179815728, guid: e219392c8e081d34191cb7103351b3ca, type: 3}
