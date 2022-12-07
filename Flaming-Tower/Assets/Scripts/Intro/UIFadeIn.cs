@@ -24,7 +24,11 @@ public class UIFadeIn : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        FadeIn();
+        if (fadeIn)
+        {
+            FadeIn();
+        }
+
     }
 
     /// <summary>

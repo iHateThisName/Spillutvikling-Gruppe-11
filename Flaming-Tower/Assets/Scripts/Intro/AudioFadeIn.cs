@@ -20,7 +20,7 @@ public class AudioFadeIn : MonoBehaviour
     private float minVolume = 0f;
 
     [Tooltip("The force to be applied to the fading.")]
-    public float fadeForce;
+    public float fadeForce = 0.2f;
 
     /// <summary>
     /// Sets the maximum volume.
@@ -48,6 +48,7 @@ public class AudioFadeIn : MonoBehaviour
             FadeIn();
         }
     }
+    
 
     /// <summary>
     /// Sets the current audio source volume to minimum
@@ -57,7 +58,6 @@ public class AudioFadeIn : MonoBehaviour
     {
         audioSource.volume = minVolume;
         setMaxVolume();
-        FadeIn();
     }
 
     /// <summary>
