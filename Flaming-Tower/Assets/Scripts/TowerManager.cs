@@ -135,10 +135,6 @@ public class TowerManager : MonoBehaviour
         
     }
 
-    private void FloorPicker() {
-        
-    }
-
     /// <summary>
     /// This method is called to determine when the floors should be generated.
     /// </summary>
