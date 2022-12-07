@@ -248,5 +248,9 @@ public class GameManager : MonoBehaviour
         // UnityEditor.EditorApplication.isPlaying needs to be set to false when quitting the game.
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
+        // Checks if the game is being run in WEBGL
+#if (UNITY_WEBGL)
+        Application.OpenURL("about:blank");
+#endif
     }
 }
