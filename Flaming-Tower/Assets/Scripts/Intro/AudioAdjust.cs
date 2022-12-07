@@ -12,6 +12,7 @@ public class AudioAdjust : MonoBehaviour
         ReadMusicVolume();
     }
 
+    
     private void ReadMusicVolume()
     {
         if (!PlayerPrefs.HasKey("musicVolume"))
