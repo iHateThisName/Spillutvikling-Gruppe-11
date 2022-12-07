@@ -8,7 +8,6 @@ public class UIFadeIn : MonoBehaviour
     [SerializeField] private bool fadeIn;
 
     public float timeToFade;
-    public float timeToChangeScene;
 
     private void Update()
     {
@@ -20,9 +19,9 @@ public class UIFadeIn : MonoBehaviour
 
     void OnEnable()
     {
+        canvasGroup.alpha = minFade;
         if (fadeIn)
         {
-            canvasGroup.alpha = minFade;
             FadeIn();
         }
     }

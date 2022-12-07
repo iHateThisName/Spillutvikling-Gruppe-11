@@ -8,7 +8,6 @@ public class UIFadeOut : MonoBehaviour
     [SerializeField] private bool fadeOut;
 
     public float timeToFade;
-    public float timeToChangeScene;
 
     private void Update()
     {
@@ -20,9 +19,9 @@ public class UIFadeOut : MonoBehaviour
 
     void OnEnable()
     {
+        canvasGroup.alpha = maxFade;
         if (fadeOut)
         {
-            canvasGroup.alpha = maxFade;
             FadeOut();
         }
     }
