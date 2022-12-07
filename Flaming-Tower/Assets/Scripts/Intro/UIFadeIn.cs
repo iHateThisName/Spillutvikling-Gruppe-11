@@ -5,18 +5,21 @@ using UnityEngine;
 /// </summary>
 public class UIFadeIn : MonoBehaviour
 {
-    [Header("Fade Settings")] 
-    [Tooltip("The canvas to be faded. Must have 'Canvas Group' as a component to the canvas to be faded.")] 
+    [Header("Fade Settings")]
+    [Tooltip("The canvas to be faded. Must have 'Canvas Group' as a component to the canvas to be faded.")]
     [SerializeField]
     private CanvasGroup canvasGroup;
-    [Tooltip("Maximum fading at the highest. 1f equals 100% visibility.")] 
+
+    [Tooltip("Maximum fading at the highest. 1f equals 100% visibility.")]
     private float maxFade = 1f;
-    [Tooltip("Minimum fading at the lowest. 0f equals 0% visibility.")] 
+
+    [Tooltip("Minimum fading at the lowest. 0f equals 0% visibility.")]
     private float minFade = 0f;
-    [Tooltip("Canvases will only be faded in if this is toggled.")] 
-    [SerializeField] 
+
+    [Tooltip("Canvases will only be faded in if this is toggled.")] [SerializeField]
     private bool fadeIn;
-    [Tooltip("The force to be applied to he fading.")] 
+
+    [Tooltip("The force to be applied to he fading.")]
     public float fadeForce;
 
 
