@@ -590,7 +590,6 @@ MonoBehaviour:
   minFade: 0
   fadeIn: 1
   timeToFade: 0.2
-  timeToChangeScene: 0
 --- !u!1 &299187652
 GameObject:
   m_ObjectHideFlags: 0
@@ -1317,7 +1316,6 @@ MonoBehaviour:
   minFade: 0
   fadeIn: 1
   timeToFade: 0.2
-  timeToChangeScene: 0
 --- !u!1 &678738334
 GameObject:
   m_ObjectHideFlags: 0
@@ -1568,7 +1566,6 @@ MonoBehaviour:
   minFade: 0
   fadeOut: 1
   timeToFade: 0.2
-  timeToChangeScene: 0
 --- !u!4 &1000920371
 Transform:
   m_ObjectHideFlags: 0
@@ -1618,7 +1615,6 @@ MonoBehaviour:
   minFade: 0
   fadeOut: 1
   timeToFade: 0.2
-  timeToChangeScene: 0
 --- !u!4 &1043656394
 Transform:
   m_ObjectHideFlags: 0
@@ -2136,7 +2132,6 @@ MonoBehaviour:
   minFade: 0
   fadeOut: 1
   timeToFade: 0.2
-  timeToChangeScene: 0
 --- !u!4 &1264553038
 Transform:
   m_ObjectHideFlags: 0
@@ -2201,7 +2196,6 @@ MonoBehaviour:
   minFade: 0
   fadeIn: 1
   timeToFade: 0.2
-  timeToChangeScene: 0
 --- !u!1 &1630067258
 GameObject:
   m_ObjectHideFlags: 0
