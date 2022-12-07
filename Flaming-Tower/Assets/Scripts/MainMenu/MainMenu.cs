@@ -104,5 +104,9 @@ public class MainMenu : MonoBehaviour
         // UnityEditor.EditorApplication.isPlaying needs to be set to false when quitting the game.
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
+        
+#if (UNITY_WEBGL)
+        Application.OpenURL("about:blank");
+#endif
     }
 }
