@@ -81,6 +81,7 @@ public class GameManager : MonoBehaviour
     public void GoToMainMenu()
     {
         GameIsPaused = false;
+        Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
     }
 
@@ -156,6 +157,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void MainMenu()
     {
+        GameIsPaused = false;
         SceneManager.LoadScene("MainMenu");
     }
 
@@ -164,7 +166,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void Restart()
     {
-        SceneManager.LoadScene("Jump Tower");
+        SceneManager.LoadScene("FlamingTower");
     }
 
     /// <summary>
