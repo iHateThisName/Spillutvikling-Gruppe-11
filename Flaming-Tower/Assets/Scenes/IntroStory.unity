@@ -389,7 +389,7 @@ MonoBehaviour:
   fadeIn: 1
   maxVolume: 0.3
   minVolume: 0
-  fadeForce: 0
+  fadeForce: 0.15
 --- !u!4 &253191048
 Transform:
   m_ObjectHideFlags: 0
